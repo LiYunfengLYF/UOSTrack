@@ -1,1 +1,97 @@
-# UOSTrack
+# Adjust Sample Imbalance and Exclude Similar Object in Underwater Object Tracking
+
+## Our method
+Our manuscript is being prepared for release on arXiv 
+
+## Underwater images and Open-air sequences Hybrid Training
+### Prepare Dataset
+
+Download RUOD(https://github.com/dlut-dimt/RUOD)
+
+Download fish dataset1(https://universe.roboflow.com/pafd/fish-clean) and fish dataset2(https://public.roboflow.com/object-detection/fish)
+
+Merge fish dataset1 and fish dataset2. Then you get FishExtend dataset. Tools are in `./tracking/tools/`
+
+RUOD and FishExtend should look like:
+
+   ```
+   ${PROJECT_ROOT}
+    -- data
+        -- RUOD
+            |-- annotations
+            |-- images
+        -- FishExtend
+            |-- annotations
+            |-- images
+   ```
+
+### Modify Path
+
+Go to `lib/train/admin/local.py` to set datasets dir
+
+Then you can training tracker follow OSTrack paradigm
+
+## Test
+
+### Prepare Dataset
+
+Download UOT100(https://www.kaggle.com/datasets/landrykezebou/uot100-underwater-object-tracking-dataset)
+
+Download UTB180(https://www.kaggle.com/datasets/bastech/utb180)
+
+Put UOT100 and UTB in ./data. It should look like:
+
+   ```
+   ${PROJECT_ROOT}
+    -- data
+        -- UOT100
+            |-- AntiguaTurtle
+            |-- ArmyDiver1
+            |-- ArmyDiver2
+            ...
+        -- UTB180
+            |-- Video_0001
+            |-- Video_01
+            |-- Video_0002
+            ...
+   ```
+
+### Modify Path
+Go to `lib/test/evaluation/local.py` to set datasets dir
+
+### Model
+
+Checkpoints will be found here.
+
+Put them to `./output/checkpoints/train/ostrack`
+
+### using MBPP
+Go to `lib/test/tracker/ostrack.py`. Then set use MDPP is True
+   ```
+        # using kalman filter to head        
+        # TODO 
+        self.use_kf = False  # True
+   ```
+
+
+## Evaluation
+
+Raw results can be found here.
+
+- UOT100
+
+Put the UOT100 raw results  on `$PROJECT_ROOT$/output/test/tracking_results/`
+```
+python tracking/analysis_results.py # need to modify tracker configs and names
+```
+- UTB180
+
+Put the UTB1180 raw results  on `$PROJECT_ROOT$/output/test/tracking_results/`
+
+```
+python tracking/analysis_results.py # need to modify tracker configs and names
+```
+
+
+## Acknowledgments
+* Thanks for the [OSTrack](https://github.com/botaoye/OSTrack) library, which helps us to quickly implement our ideas.
