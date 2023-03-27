@@ -1,7 +1,9 @@
-# Adjust Sample Imbalance and Exclude Similar Object in Underwater Object Tracking
+#  Sample Imbalance Adjustment and Similar Object Exclusion in Underwater Object Tracking
 
 ## Our method
-Our manuscript is being prepared for release on arXiv 
+
+Our manuscript is on [arXiv](https://arxiv.org/abs/2301.01482)
+
 
 ## Underwater images and Open-air sequences Hybrid Training
 ### Prepare Dataset
@@ -61,7 +63,7 @@ Go to `lib/test/evaluation/local.py` to set datasets dir
 
 ### Model
 
-Checkpoints will be found here.
+[Checkpoints](https://drive.google.com/drive/folders/1rfD-axPbJgOJCy378vpK0RROb9-QvowH?usp=share_link) will be found here.
 
 Put them to `./output/checkpoints/train/ostrack`
 
@@ -76,7 +78,7 @@ Go to `lib/test/tracker/ostrack.py`. Then set use MDPP is True
 
 ## Evaluation
 
-Raw results can be found here.
+[Raw results](https://drive.google.com/drive/folders/1FF8_GP06smyYQ8uMHB0TDLhM3L9jASQi?usp=share_link) can be found here.
 
 - UOT100
 
