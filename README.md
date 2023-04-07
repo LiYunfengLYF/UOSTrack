@@ -2,7 +2,7 @@
 
 ## Our method
 
-Our manuscript is on [arXiv](https://arxiv.org/abs/2301.01482)
+Our manuscript.
 
 
 ## Underwater images and Open-air sequences Hybrid Training
