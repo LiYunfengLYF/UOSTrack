@@ -77,6 +77,9 @@ class OSTrack(BaseTracker):
     def initialize(self, image, info: dict):
         H, W, _ = image.shape
 
+        if self.use_uie:
+            image = self.uie(image)
+
         # forward the template once
         z_patch_arr, resize_factor, z_amask_arr = sample_target(image, info['init_bbox'], self.params.template_factor,
                                                                 output_sz=self.params.template_size)
@@ -112,6 +115,8 @@ class OSTrack(BaseTracker):
     def track(self, image, info: dict = None):
         H, W, _ = image.shape
         self.frame_id += 1
+        if self.use_uie:
+            image = self.uie(image)
 
         x_patch_arr, resize_factor, x_amask_arr = sample_target(image, self.state, self.params.search_factor,
                                                                 output_sz=self.params.search_size)  # (x1, y1, w, h)
