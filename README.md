@@ -75,6 +75,16 @@ Go to `lib/test/tracker/ostrack.py`. Then set use MDPP is True
         self.use_kf = False  # True
    ```
 
+### using Underwater Image Enhancement method 
+Download UIE [model](https://drive.google.com/drive/folders/1wsDRj5CF-UKdX7V6WYrdm87pUzpGoIAn?usp=sharing)
+Merge it with `external/uie`
+Go to `lib/test/tracker/ostrack.py`. Then set use_uie is True
+   ```
+        # using kalman filter to head        
+        # TODO 
+        self.use_uie = False  # True
+        self.uie = build_fuinegan() # RGHSUWE, UCM, build_shallowuwnet(), build_ushape()
+   ```
 
 ## Evaluation
 

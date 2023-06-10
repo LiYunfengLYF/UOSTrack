@@ -21,6 +21,12 @@ from lib.test.tracker.kf_utils import decode_muli_bbox
 from lib.utils.box_ops import box_iou
 from lib.test.tracker.kf_utils import deep_xywh2xyxy, NMS
 
+from external.uie.FUnIE_GAN import build_fuinegan
+from external.uie.RGHS import RGHSUWE
+from external.uie.UCM import UCM
+from external.uie.Shallow_UWnet import build_shallowuwnet
+from external.uie.Ushape import build_ushape
+
 
 class OSTrack(BaseTracker):
     def __init__(self, params, dataset_name):
@@ -61,7 +67,12 @@ class OSTrack(BaseTracker):
         self.kalmanFilter = None
         self.num = 30
         self.nms_thre = 0.8
-        print('use kf', self.use_kf)
+
+        # using uie
+        self.use_uie = False
+        self.uie = build_fuinegan()
+
+        print('use kf', self.use_kf, 'use uie', self.use_uie)
 
     def initialize(self, image, info: dict):
         H, W, _ = image.shape
